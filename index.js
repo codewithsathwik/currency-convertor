@@ -28,7 +28,7 @@ function updateFlag(event){
     let sel = event.value;
     let currCode = conList[sel];
     let flagLink =`https://flagsapi.com/${currCode}/flat/64.png`;
-    let newCon = sel.parentElement.querySelector("img")
+    let newCon = event.parentElement.querySelector("img")
     newCon.src = flagLink;
 }
 
