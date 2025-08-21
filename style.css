@@ -74,9 +74,11 @@ form input {
 
 .msg {
   margin: 2rem 0 2rem 0;
+  display: none;
 }
 
 form button {
+  margin-top: 10px;
   height: 3rem;
   background-color: #af4d98;
   color: #fff;

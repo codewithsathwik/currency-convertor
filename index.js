@@ -1,15 +1,13 @@
-let d = new Date();
-let newDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-const baseURL = `https://${newDate}.currency-api.pages.dev/v1/currencies/`;
+const baseURL = `https://latest.currency-api.pages.dev/v1/currencies/`;
+
+console.log(baseURL);
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
-
-
 
 for(let select of dropdowns){
     for(let cCode in conList){
@@ -24,6 +22,8 @@ for(let select of dropdowns){
     })
 }
 
+
+
 function updateFlag(event){
     let sel = event.value;
     let currCode = conList[sel];
@@ -33,3 +33,23 @@ function updateFlag(event){
 }
 
 
+async function updateCurrency(){
+    let amount = document.querySelector(".amount input");
+    let amtValue = amount.value;
+    if(amtValue ==="" || amtValue<=0)
+        alert("Enter the proper value");
+    let URL = `${baseURL}${fromCurr.value.toLowerCase()}.json`;
+    let response = await fetch(URL);
+    let apiKey = await response.json();
+    let currVal = apiKey[fromCurr.value.toLowerCase()];
+    let newRates = currVal[toCurr.value.toLowerCase()];
+    newValue = (amtValue * newRates);
+    msg.style.display = "block";
+    msg.innerText = `${amtValue} ${fromCurr.value} = ${newValue} ${toCurr.value}`; 
+    
+}
+
+btn.addEventListener("click",(evt)=>{
+    evt.preventDefault();
+    updateCurrency();
+});
