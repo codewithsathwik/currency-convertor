@@ -22,8 +22,6 @@ for(let select of dropdowns){
     })
 }
 
-
-
 function updateFlag(event){
     let sel = event.value;
     let currCode = conList[sel];
@@ -44,9 +42,8 @@ async function updateCurrency(){
     let currVal = apiKey[fromCurr.value.toLowerCase()];
     let newRates = currVal[toCurr.value.toLowerCase()];
     newValue = (amtValue * newRates);
-    msg.style.display = "block";
+    msg.classList.add("show");
     msg.innerText = `${amtValue} ${fromCurr.value} = ${newValue} ${toCurr.value}`; 
-    
 }
 
 btn.addEventListener("click",(evt)=>{
