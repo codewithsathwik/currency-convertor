@@ -23,11 +23,11 @@ for(let select of dropdowns){
     })
 }
 
-function updateFlag(event){
-    let sel = event.value;
+function updateFlag(element){
+    let sel = element.value;
     let currCode = conList[sel];
     let flagLink =`https://flagsapi.com/${currCode}/flat/64.png`;
-    let newCon = event.parentElement.querySelector("img");
+    let newCon = element.parentElement.querySelector("img");
     newCon.src = flagLink;
 }
 
