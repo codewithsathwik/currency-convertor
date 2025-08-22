@@ -8,6 +8,7 @@ const btn = document.querySelector("form button");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
+const swapBtn = document.querySelector("i");
 
 for(let select of dropdowns){
     for(let cCode in conList){
@@ -26,7 +27,7 @@ function updateFlag(event){
     let sel = event.value;
     let currCode = conList[sel];
     let flagLink =`https://flagsapi.com/${currCode}/flat/64.png`;
-    let newCon = event.parentElement.querySelector("img")
+    let newCon = event.parentElement.querySelector("img");
     newCon.src = flagLink;
 }
 
@@ -46,7 +47,26 @@ async function updateCurrency(){
     msg.innerText = `${amtValue} ${fromCurr.value} = ${newValue} ${toCurr.value}`; 
 }
 
+function interChange(){
+    //interchanging countrucodes
+    let tempVal = fromCurr.value;
+    fromCurr.value = toCurr.value;
+    toCurr.value = tempVal;
+
+    //interchangeing flags
+    let fromSrc = document.querySelector(".from div img");
+    let toSrc = document.querySelector(".to div img");
+    let tempSrc = fromSrc.src;
+    fromSrc.src = toSrc.src;
+    toSrc.src = tempSrc;
+}
+
+
 btn.addEventListener("click",(evt)=>{
     evt.preventDefault();
     updateCurrency();
+});
+
+swapBtn.addEventListener("click",()=>{
+    interChange();
 });
