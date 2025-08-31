@@ -35,8 +35,10 @@ function updateFlag(element){
 async function updateCurrency(){
     let amount = document.querySelector(".amount input");
     let amtValue = amount.value;
-    if(amtValue ==="" || amtValue<=0)
+    if(amtValue ==="" || amtValue<=0){
         alert("Enter the proper value");
+        return;
+    }
     let URL = `${baseURL}${fromCurr.value.toLowerCase()}.json`;
     let response = await fetch(URL);
     let apiKey = await response.json();
