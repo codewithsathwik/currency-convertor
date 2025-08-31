@@ -40,11 +40,12 @@ async function updateCurrency(){
     let URL = `${baseURL}${fromCurr.value.toLowerCase()}.json`;
     let response = await fetch(URL);
     let apiKey = await response.json();
+    msg.style.display = "block";
     let currVal = apiKey[fromCurr.value.toLowerCase()];
     let newRates = currVal[toCurr.value.toLowerCase()];
-    newValue = (amtValue * newRates);
+    let newValue = (amtValue * newRates);
     msg.classList.add("show");
-    msg.innerText = `${amtValue} ${fromCurr.value} = ${newValue} ${toCurr.value}`; 
+    msg.innerText = `${amtValue} ${fromCurr.value} = ${newValue.toFixed(5)} ${toCurr.value}`; 
 }
 
 function interChange(){
